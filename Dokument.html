@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="sv">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Beräkningssida</title>
+    <style>
+        body, html {
+            margin: 0;
+            padding: 0;
+            height: 100%;
+            overflow: hidden;
+        }
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f0f0f0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            width: 100%;
+        }
+        .container {
+            background: #fff;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            width: 90%;
+            max-width: 500px;
+            overflow: auto;
+        }
+        img {
+            max-width: 100%;
+            height: auto;
+            border-radius: 4px;
+            margin-bottom: 20px;
+        }
+        label {
+            display: block;
+            margin: 10px 0 5px;
+            font-weight: bold;
+        }
+        input {
+            margin-bottom: 15px;
+            padding: 10px;
+            width: 100%;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            box-sizing: border-box;
+        }
+        button {
+            padding: 10px;
+            background-color: #007BFF;
+            color: #fff;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            width: 100%;
+        }
+        button:hover {
+            background-color: #0056b3;
+        }
+        .result {
+            margin-top: 20px;
+            font-size: 1.2em;
+            font-weight: bold;
+            padding: 10px;
+            border-radius: 4px;
+            background-color: #e0e0e0;
+        }
+        .result span {
+            display: block;
+            margin: 10px 0;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <img src="https://via.placeholder.com/400x200" alt="Beskrivande bild">
+        <h2>Beräkningsresultat</h2>
+        <label for="x">Avstånd från duschens vägg till motsatt vägg:</label>
+        <input type="number" id="x" placeholder="Ange avstånd i mm" step="any">
+        <label for="y">Avstånd från duschens vägg till brunnen:</label>
+        <input type="number" id="y" placeholder="Ange avstånd i mm" step="any">
+        <button id="calculateButton">Beräkna</button>
+        <div class="result">
+            <span id="optimalResult"></span>
+            <span id="maximalResult"></span>
+            <span id="minimalResult"></span>
+        </div>
+    </div>
+    <script>
+        document.getElementById('calculateButton').addEventListener('click', function() {
+            const x = parseFloat(document.getElementById('x').value);
+            const y = parseFloat(document.getElementById('y').value);
+            if (isNaN(x) || isNaN(y)) {
+                alert('Vänligen ange giltiga nummer för både X och Y');
+                return;
+            }
+
+            const optimal = (6.3 - 13 * y + 6 * x).toFixed(2);
+            const maximal = (9 - 20 * y + 10 * x).toFixed(2);
+            const minimal = (4.5 - 7 * y + 2 * x).toFixed(2);
+
+            document.getElementById('optimalResult').innerText = `Optimalt: ${optimal} mm`;
+            document.getElementById('maximalResult').innerText = `Maximalt: ${maximal} mm`;
+            document.getElementById('minimalResult').innerText = `Minimalt: ${minimal} mm`;
+        });
+    </script>
+</body>
+</html>
