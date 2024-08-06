@@ -5,29 +5,35 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Beräkningssida</title>
     <style>
-        body, html {
-            margin: 0;
-            padding: 0;
-            height: 100%;
-            overflow: hidden;
-        }
-        body {
-            font-family: Arial, sans-serif;
-            background-color: #f0f0f0;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            width: 100%;
-        }
-        .container {
-            background: #fff;
-            padding: 20px;
-            border-radius: 8px;
-            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-            width: 90%;
-            max-width: 500px;
-            overflow: auto;
-        }
+        
+body, html {
+    margin: 0;
+    padding: 0;
+    height: 100%; /* Denna egenskap kan tas bort eller justeras beroende på designbehov */
+    overflow: auto; /* Ändra från 'hidden' till 'auto' för att tillåta scrolling */
+}
+
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f0f0f0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh; /* Använd 'min-height' istället för 'height' för att fylla minst hela skärmens höjd */
+    width: 100%;
+    overflow: auto; /* Se till att denna inte hindrar scrolling */
+}
+
+.container {
+    background: #fff;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    width: 90%;
+    max-width: 500px;
+    overflow: auto; /* Se till att detta inte stoppar inre innehåll från att expandera */
+}
+
         img {
             max-width: 100%;
             height: auto;
