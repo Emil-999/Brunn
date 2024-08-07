@@ -113,5 +113,23 @@
             <span id="minimalResult"></span>
         </div>
     </div>
+    <script>
+        document.getElementById('calculateButton').addEventListener('click', function() {
+            const x = parseFloat(document.getElementById('x').value);
+            const y = parseFloat(document.getElementById('y').value);
+            if (isNaN(x) || isNaN(y)) {
+                alert('Vänligen ange giltiga nummer för både X och Y');
+                return;
+            }
+
+            const optimal = (6.3 - 13 * y + 6 * x).toFixed(2);
+            const maximal = (9 - 20 * y + 10 * x).toFixed(2);
+            const minimal = (4.5 - 7 * y + 2 * x).toFixed(2);
+
+            document.getElementById('optimalResult').innerText = `Optimalt: ${optimal} mm`;
+            document.getElementById('maximalResult').innerText = `Maximalt: ${maximal} mm`;
+            document.getElementById('minimalResult').innerText = `Minimalt: ${minimal} mm`;
+        });
+    </script>
 </body>
 </html>
