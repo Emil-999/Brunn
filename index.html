@@ -5,57 +5,79 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Beräkningssida</title>
     <style>
+        :root {
+            --primary-color: #006837; /* Mörkgrön */
+            --secondary-color: #707070; /* Grå text */
+            --background-color: #F4F4F4; /* Ljusgrå bakgrund */
+            --button-color: #008C45; /* Grön knappfärg */
+            --button-hover-color: #006837; /* Mörkare grön vid hover */
+        }
+
         body, html {
             margin: 0;
             padding: 0;
-            overflow: auto; /* Allow scrolling */
-            font-family: Arial, sans-serif; /* Consistent font */
+            font-family: 'Arial', sans-serif;
+            color: var(--secondary-color);
+            background-color: var(--background-color);
+            height: 100%;
+            overflow: auto;
         }
+
         .container {
-            max-width: 500px;
-            margin: auto;
+            background: #fff;
             padding: 20px;
-            background-color: #fff;
             border-radius: 8px;
             box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            width: 90%;
+            max-width: 600px;
+            margin: 20px auto;
+            overflow: auto;
         }
+
         .header {
-            background-color: #003B5C; /* Dark blue background */
-            color: #ffffff;
+            background-color: var(--primary-color);
+            color: white;
             padding: 10px 20px;
             text-align: center;
+            font-size: 24px;
         }
+
         img {
             max-width: 100%;
             height: auto;
             border-radius: 4px;
             margin-bottom: 20px;
         }
+
         label {
             display: block;
             margin: 10px 0 5px;
             font-weight: bold;
         }
+
         input, button {
             width: 100%;
             padding: 10px;
             margin-top: 10px;
             box-sizing: border-box;
+            border-radius: 4px;
         }
+
         input {
             border: 1px solid #ccc;
-            border-radius: 4px;
         }
+
         button {
-            background-color: #007BFF;
-            color: #fff;
+            background-color: var(--button-color);
+            color: white;
             border: none;
-            border-radius: 4px;
             cursor: pointer;
         }
+
         button:hover {
-            background-color: #0056b3;
+            background-color: var(--button-hover-color);
         }
+
         .result {
             margin-top: 20px;
             font-size: 1.2em;
@@ -64,6 +86,7 @@
             border-radius: 4px;
             background-color: #e0e0e0;
         }
+
         .result span {
             display: block;
             margin: 10px 0;
@@ -71,40 +94,24 @@
     </style>
 </head>
 <body>
-    <div class="header">
-        <h1>Välkommen till Beräkningssidan</h1>
-    </div>
+    <header class="header">
+        Beräkningssida
+    </header>
     <div class="container">
         <img src="bild.jpg" alt="Beskrivande bild">
         <h2>Beräkningsresultat</h2>
-        <label for="x">Avstånd från duschens vägg till motsatt vägg:</label>
-        <input type="number" id="x" placeholder="Ange avstånd i mm" step="any">
-        <label for="y">Avstånd från duschens vägg till brunnen:</label>
-        <input type="number" id="y" placeholder="Ange avstånd i mm" step="any">
-        <button id="calculateButton">Beräkna</button>
+        <form>
+            <label for="x">Avstånd från duschens vägg till motsatt vägg:</label>
+            <input type="number" id="x" placeholder="Ange avstånd i mm" step="any">
+            <label for="y">Avstånd från duschens vägg till brunnen:</label>
+            <input type="number" id="y" placeholder="Ange avstånd i mm" step="any">
+            <button type="button" id="calculateButton">Beräkna</button>
+        </form>
         <div class="result">
             <span id="optimalResult"></span>
             <span id="maximalResult"></span>
             <span id="minimalResult"></span>
         </div>
     </div>
-    <script>
-        document.getElementById('calculateButton').addEventListener('click', function() {
-            const x = parseFloat(document.getElementById('x').value);
-            const y = parseFloat(document.getElementById('y').value);
-            if (isNaN(x) || isNaN(y)) {
-                alert('Vänligen ange giltiga nummer för både X och Y');
-                return;
-            }
-
-            const optimal = (6.3 - 13 * y + 6 * x).toFixed(2);
-            const maximal = (9 - 20 * y + 10 * x).toFixed(2);
-            const minimal = (4.5 - 7 * y + 2 * x).toFixed(2);
-
-            document.getElementById('optimalResult').innerText = `Optimalt: ${optimal} mm`;
-            document.getElementById('maximalResult').innerText = `Maximalt: ${maximal} mm`;
-            document.getElementById('minimalResult').innerText = `Minimalt: ${minimal} mm`;
-        });
-    </script>
 </body>
 </html>
